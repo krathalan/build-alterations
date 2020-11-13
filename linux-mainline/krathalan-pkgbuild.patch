@@ -1,0 +1,39 @@
+diff --git a/PKGBUILD b/PKGBUILD
+index cce6687..0a8c4ed 100644
+--- a/PKGBUILD
++++ b/PKGBUILD
+@@ -20,7 +20,7 @@ makedepends=(
+   xmlto python-sphinx python-sphinx_rtd_theme graphviz imagemagick
+   git
+ )
+-options=('!strip')
++options=('!strip' '!ccache')
+ _srcname=linux-mainline
+ source=(
+   "$_srcname::git+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git#tag=$_tag"
+@@ -57,7 +57,7 @@ prepare() {
+ 
+   echo "Setting config..."
+   cp ../config .config
+-  make olddefconfig
++  make nconfig
+ 
+   make -s kernelrelease > version
+   echo "Prepared $pkgbase version $(<version)"
+@@ -66,7 +66,6 @@ prepare() {
+ build() {
+   cd $_srcname
+   make all
+-  make htmldocs
+ }
+ 
+ _package() {
+@@ -193,7 +192,7 @@ _package-docs() {
+   ln -sr "$builddir/Documentation" "$pkgdir/usr/share/doc/$pkgbase"
+ }
+ 
+-pkgname=("$pkgbase" "$pkgbase-headers" "$pkgbase-docs")
++pkgname=("$pkgbase")
+ for _p in "${pkgname[@]}"; do
+   eval "package_$_p() {
+     $(declare -f "_package${_p#$pkgbase}")

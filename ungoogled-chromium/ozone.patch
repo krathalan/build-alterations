@@ -1,0 +1,28 @@
+diff --git a/PKGBUILD b/PKGBUILD
+index 2ec46e6..09858bc 100644
+--- a/PKGBUILD
++++ b/PKGBUILD
+@@ -24,6 +24,7 @@ pkgdesc="A lightweight approach to removing Google web service dependency"
+ arch=('x86_64')
+ url="https://github.com/Eloston/ungoogled-chromium"
+ license=('BSD')
++options+=('!ccache')
+ depends=('gtk3' 'nss' 'alsa-lib' 'xdg-utils' 'libxss' 'libcups' 'libgcrypt'
+          'ttf-liberation' 'systemd' 'dbus' 'libpulse' 'pciutils' 'json-glib'
+          'desktop-file-utils' 'hicolor-icon-theme')
+@@ -181,6 +182,15 @@ build() {
+     'use_custom_libcxx=false'
+     'enable_widevine=true'
+     'use_vaapi=true'
++    'use_x11=false'
++    'use_ozone=true'
++    'ozone_platform_wayland=true'
++    'ozone_platform_x11=true'
++    'ozone_auto_platforms=false'
++    'use_xkbcommon=true'
++    'use_system_libwayland=true'
++    'use_system_minigbm=true'
++    'use_system_libdrm=true'
+   )
+ 
+   if [[ -n ${_system_libs[icu]+set} ]]; then
