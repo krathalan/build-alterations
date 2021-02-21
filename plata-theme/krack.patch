@@ -1,0 +1,14 @@
+diff --git a/PKGBUILD b/PKGBUILD
+index 92615af..82bae6e 100644
+--- a/PKGBUILD
++++ b/PKGBUILD
+@@ -30,7 +30,8 @@ build() {
+     --prefix='/usr' \
+     --enable-parallel \
+     --enable-plank \
+-    --enable-telegram \
++    --enable-telegram \ 
++    --disable-flashback --disable-xfce --disable-openbox --disable-cinnamon --disable-mate --disable-gnome --with-selection_color=#009959 --with-accent_color=#00ff96 --with-suggestion_color=#84bc9c --with-destruction_color=#b3001b \
+     "$MARCO_FLAGS"
+   make -j1 # it uses GNU Parallel instead
+ }
