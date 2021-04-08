@@ -1,15 +1,16 @@
 diff --git a/PKGBUILD b/PKGBUILD
-index 92615af..992b3f4 100644
+index 92615af..2d001ba 100644
 --- a/PKGBUILD
 +++ b/PKGBUILD
 @@ -1,13 +1,15 @@
  # Maintainer: nightuser <nightuser.android@gmail.com>
-
+ 
 -pkgname=plata-theme
 +pkgname=plata-theme-krath-purple
 +_pkgname=plata-theme
  pkgver=0.9.9
- pkgrel=1
+-pkgrel=1
++pkgrel=2
  pkgdesc='A Gtk+ theme based on Material Design Refresh'
  arch=('any')
  url='https://gitlab.com/tista500/plata-theme'
@@ -23,10 +24,10 @@ index 92615af..992b3f4 100644
 @@ -24,19 +26,19 @@ build() {
      MARCO_FLAGS="--disable-mate"
    fi
-
+ 
 -  cd "$pkgname"
 +  cd "${_pkgname}"
-
+ 
    ./autogen.sh \
      --prefix='/usr' \
      --enable-parallel \
@@ -36,10 +37,10 @@ index 92615af..992b3f4 100644
 +    --disable-flashback --disable-xfce --disable-openbox --disable-cinnamon --disable-mate --disable-gnome --with-selection_color=#9482C9 --with-accent_color=#B3A6D8 --with-suggestion_color=#3D8F8C --with-destruction_color=#b3001b
    make -j1 # it uses GNU Parallel instead
  }
-
+ 
  package() {
 -  cd "$pkgname"
 +  cd "${_pkgname}"
-
+ 
    make DESTDIR="$pkgdir" install
-
+ 
