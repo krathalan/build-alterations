@@ -1,0 +1,40 @@
+diff --git a/PKGBUILD b/PKGBUILD
+index 2497aaa..61e05d6 100755
+--- a/PKGBUILD
++++ b/PKGBUILD
+@@ -88,7 +88,7 @@ prepare() {
+     for submodule in externals/{inih/inih,cubeb,dynarmic,libressl,libusb/libusb,discord-rpc,Vulkan-Headers,sirit,mbedtls,xbyak,opus/opus,ffmpeg,SDL,cpp-httplib}; do
+         git submodule init ${submodule}
+         git config submodule.${submodule}.url "$srcdir/${submodule##*/}"
+-        git submodule update --init
++        git -c protocol.file.allow=always submodule update --init
+     done
+ 
+     cd "$srcdir/$_pkgname"/externals/cubeb
+@@ -96,21 +96,21 @@ prepare() {
+     for submodule in cmake/sanitizers-cmake; do
+         git submodule init ${submodule}
+         git config submodule.${submodule}.url "$srcdir/${submodule##*/}"
+-        git submodule update --init
++        git -c protocol.file.allow=always submodule update --init
+     done
+-    
++
+     cd "$srcdir/$_pkgname"/externals/sirit
+-    
++
+     for submodule in externals/SPIRV-Headers; do
+         git submodule init ${submodule}
+         git config submodule.${submodule}.url "$srcdir/${submodule##*/}"
+-        git submodule update --init
++        git -c protocol.file.allow=always submodule update --init
+     done
+ }
+ 
+ build() {
+     cd "$srcdir/$_pkgname"
+-    
++
+     if [[ -d build ]]; then
+         rm -rf build
+     fi
