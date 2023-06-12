@@ -1,0 +1,21 @@
+diff --git a/PKGBUILD b/PKGBUILD
+index 1967a32..c0bb2ff 100644
+--- a/PKGBUILD
++++ b/PKGBUILD
+@@ -8,6 +8,8 @@ pkgdesc="zlib replacement with optimizations for 'next generation' systems"
+ arch=('i686' 'x86_64')
+ url="https://github.com/zlib-ng/zlib-ng"
+ license=('custom:zlib')
++provides=('zlib')
++conflicts=('zlib')
+ depends=('glibc')
+ makedepends=('cmake')
+ options=('staticlibs')
+@@ -23,6 +25,7 @@ build() {
+     -DCMAKE_BUILD_TYPE=Release \
+     -DCMAKE_INSTALL_PREFIX="/usr" \
+     -DCMAKE_INSTALL_LIBDIR="lib" \
++    -DZLIB_COMPAT=ON \
+     ./
+   make -C "_build"
+ }
