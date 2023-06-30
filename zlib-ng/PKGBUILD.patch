@@ -15,7 +15,7 @@ index 2fed235..397179c 100644
      -DCMAKE_INSTALL_PREFIX="/usr" \
      -DCMAKE_INSTALL_LIBDIR="lib" \
      -DWITH_GTEST=OFF \
-+    -DZLIB_COMPAT=ON
++    -DZLIB_COMPAT=ON \
      ./
    make -C "_build"
  }
